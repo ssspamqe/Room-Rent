@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: houses_table.sql
+      relativeToChangelogFile: true
+
+  - include:
+      file: fill_houses_table.sql
+      relativeToChangelogFile: true
+
