@@ -33,10 +33,10 @@ public class User {
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "seller_id", nullable = false)
     private Seller sellerAccount;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "buyer_id")
     private Buyer buyerAccount;
 }

@@ -33,8 +33,8 @@ public class Room {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "owner_user_id", nullable = false)
-    private User owner;
+    @JoinColumn(name = "seller_id", nullable = false)
+    private Seller owner;
 
     @Column(name = "position")
     private Point position;

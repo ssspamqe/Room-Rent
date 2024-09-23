@@ -1,9 +1,25 @@
 databaseChangeLog:
   - include:
-      file: houses_table.sql
+      file: scripts/create_users_table.sql
       relativeToChangelogFile: true
 
   - include:
-      file: fill_houses_table.sql
+      file: scripts/create_sellers_table.sql
+      relativeToChangelogFile: true
+
+  - include:
+      file: scripts/create_buyers_table.sql
+      relativeToChangelogFile: true
+
+  - include:
+      file: scripts/create_rooms_table.sql
+      relativeToChangelogFile: true
+
+  - include:
+      file: scripts/create_rents_table.sql
+      relativeToChangelogFile: true
+
+  - include:
+      file: scripts/create_announcements_table.sql
       relativeToChangelogFile: true
 
