@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: room-rent
+  datasource:
+    url: jdbc:postgresql://localhost:5432/room-rent
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.yaml
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  docker:
+    compose:
+      enabled: true
+
+
+
+
+
