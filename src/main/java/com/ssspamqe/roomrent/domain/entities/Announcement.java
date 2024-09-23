@@ -1,4 +1,4 @@
-package com.ssspamqe.roomrent.domain;
+package com.ssspamqe.roomrent.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,39 +6,34 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Entity
-@Table(name = "seller")
-@AllArgsConstructor
+@Table(name = "announcements")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class Seller {
+public class Announcement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "description")
+    private String description;
 
-    @OneToMany(mappedBy = "owner")
-    private Set<Room> rooms;
+    @ManyToOne
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
 
-    @OneToMany(mappedBy = "seller")
-    private Set<Rent> rents;
-
-    @OneToMany(mappedBy = "seller")
-    private Set<Announcement> announcements;
+    @ManyToOne
+    @JoinColumn(name = "seller_id", nullable = false)
+    private Seller seller;
 }

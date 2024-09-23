@@ -1,4 +1,4 @@
-package com.ssspamqe.roomrent.domain;
+package com.ssspamqe.roomrent.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.ssspamqe.roomrent.domain;
+package com.ssspamqe.roomrent.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,43 +6,39 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.locationtech.jts.geom.Point;
 
 import java.util.Set;
 
 @Entity
-@Table(name = "rooms")
+@Table(name = "seller")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Room {
+public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "seller_id", nullable = false)
-    private Seller owner;
+    @OneToMany(mappedBy = "owner")
+    private Set<Room> rooms;
 
-    @Column(name = "position")
-    private Point position;
-
-    @OneToMany
-    @JoinColumn(name = "room_id")
+    @OneToMany(mappedBy = "seller")
     private Set<Rent> rents;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "seller")
     private Set<Announcement> announcements;
 }

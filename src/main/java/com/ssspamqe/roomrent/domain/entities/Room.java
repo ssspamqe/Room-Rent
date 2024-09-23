@@ -1,4 +1,4 @@
-package com.ssspamqe.roomrent.domain;
+package com.ssspamqe.roomrent.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,45 +7,42 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.locationtech.jts.geom.Point;
 
-import java.time.OffsetDateTime;
+import java.util.Set;
 
 @Entity
-@Table(name = "rents")
+@Table(name = "rooms")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Rent {
+@AllArgsConstructor
+public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id", nullable = false)
-    private Room room;
-
-    @ManyToOne
-    @JoinColumn(name = "buyer_id", nullable = false)
-    private Buyer buyer;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "seller_id", nullable = false)
-    private Seller seller;
+    private Seller owner;
 
-    @Column(name = "start", nullable = false)
-    private OffsetDateTime start;
+    @Column(name = "position")
+    private Point position;
 
-    @Column(name = "end", nullable = false)
-    private OffsetDateTime end;
+    @OneToMany
+    @JoinColumn(name = "room_id")
+    private Set<Rent> rents;
 
-    @Column(name = "created_at", nullable = false)
-    private OffsetDateTime createdAt;
+    @OneToMany(mappedBy = "room")
+    private Set<Announcement> announcements;
 }
