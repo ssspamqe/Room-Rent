@@ -1,5 +1,8 @@
-package com.ssspamqe.roomrent.domain.entities;
+package com.ssspamqe.roomrent.domain.entities.users;
 
+import com.ssspamqe.roomrent.domain.entities.stuff.Announcement;
+import com.ssspamqe.roomrent.domain.entities.stuff.Rent;
+import com.ssspamqe.roomrent.domain.entities.stuff.Room;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,12 +20,12 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "buyers")
+@Table(name = "seller")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Buyer {
+public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +36,12 @@ public class Buyer {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "buyer")
+    @OneToMany(mappedBy = "owner")
+    private Set<Room> rooms;
+
+    @OneToMany(mappedBy = "seller")
     private Set<Rent> rents;
 
+    @OneToMany(mappedBy = "seller")
+    private Set<Announcement> announcements;
 }

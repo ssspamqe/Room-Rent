@@ -1,5 +1,7 @@
-package com.ssspamqe.roomrent.domain.entities;
+package com.ssspamqe.roomrent.domain.entities.stuff;
 
+import com.ssspamqe.roomrent.domain.entities.users.Buyer;
+import com.ssspamqe.roomrent.domain.entities.users.Seller;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
