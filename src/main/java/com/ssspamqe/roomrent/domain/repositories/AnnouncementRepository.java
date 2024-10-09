@@ -3,5 +3,5 @@ package com.ssspamqe.roomrent.domain.repositories;
 import com.ssspamqe.roomrent.domain.entities.Announcement;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AnnouncementRepository extends JpaRepository<Long, Announcement> {
+public interface AnnouncementRepository extends JpaRepository<Announcement, Long> {
 }
