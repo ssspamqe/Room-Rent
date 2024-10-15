@@ -1,4 +1,4 @@
-package com.ssspamqe.roomrent.security.entities;
+package com.ssspamqe.roomrent.domain.entities.users;
 
 public enum Role {
     VIEWER,
