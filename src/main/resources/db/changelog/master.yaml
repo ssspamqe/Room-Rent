@@ -2,5 +2,5 @@ databaseChangeLog:
   - includeAll:
       relativeToChangelogFile: true
       path: scripts
-
+      resourceComparator: com.ssspamqe.roomrent.configuration.liquibase.ScriptComparator
 

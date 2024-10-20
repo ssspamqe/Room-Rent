@@ -1,3 +1,3 @@
 ALTER TABLE users
     ADD COLUMN
-        roles VARCHAR(32)[] DEFAULT ['VIEWER']
+        roles VARCHAR(32)[] DEFAULT ARRAY ['VIEWER']
