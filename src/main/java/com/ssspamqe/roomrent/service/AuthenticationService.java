@@ -1,8 +1,8 @@
 package com.ssspamqe.roomrent.service;
 
-import com.ssspamqe.roomrent.controller.models.request.SignInRequest;
-import com.ssspamqe.roomrent.controller.models.request.SignUpRequest;
-import com.ssspamqe.roomrent.controller.models.response.JwtAuthenticationResponse;
+import com.ssspamqe.roomrent.controllers.models.request.SignInRequest;
+import com.ssspamqe.roomrent.controllers.models.request.SignUpRequest;
+import com.ssspamqe.roomrent.controllers.models.response.JwtAuthenticationResponse;
 import com.ssspamqe.roomrent.domain.entities.users.Role;
 import com.ssspamqe.roomrent.domain.entities.users.User;
 import com.ssspamqe.roomrent.security.JwtService;
