@@ -38,8 +38,10 @@ public class SecurityConfiguration {
                 }))
 
                 .authorizeHttpRequests(request -> request
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/swagger-resources/*").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/swagger-ui/**, /swagger-resources/*, /v3/api-docs/**").permitAll()
                         .requestMatchers("/endpoint", "/amin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
