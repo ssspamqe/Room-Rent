@@ -80,7 +80,7 @@ public class JwtService {
         if (userDetails instanceof SecurityUserDetails user) {
             claims.put("id", user.getId());
             claims.put("email", user.getEmail());
-            claims.put("role", user.getRole());
+            claims.put("roles", user.getAuthorities());
         }
         return generateToken(claims, userDetails);
     }
