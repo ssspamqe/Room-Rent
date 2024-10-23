@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "user_passowords")
+@Table(name = "user_passwords")
 @Getter
 @Setter
 @AllArgsConstructor

@@ -3,6 +3,7 @@ package com.ssspamqe.roomrent.security.entities;
 import com.ssspamqe.roomrent.domain.entities.users.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @AllArgsConstructor
+@Log4j2
 @Builder
 public class SecurityUserDetails implements UserDetails {
 
@@ -18,6 +20,12 @@ public class SecurityUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        var res = user.getRoles().stream()
+                .map(
+                        role -> new SimpleGrantedAuthority(role.name())
+                )
+                .toList();
+        log.info("returning roles: {}", res);
         return user.getRoles().stream()
                 .map(
                         role -> new SimpleGrantedAuthority(role.name())
