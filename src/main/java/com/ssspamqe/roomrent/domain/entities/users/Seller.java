@@ -20,7 +20,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "seller")
+@Table(name = "sellers")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
