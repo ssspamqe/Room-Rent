@@ -1,4 +1,4 @@
-package com.ssspamqe.roomrent.controller;
+package com.ssspamqe.roomrent.controllers;
 
 import com.ssspamqe.roomrent.controllers.models.request.SignInRequest;
 import com.ssspamqe.roomrent.controllers.models.request.SignUpRequest;
