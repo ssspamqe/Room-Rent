@@ -10,6 +10,27 @@ services:
       POSTGRES_PASSWORD: admin
     volumes:
       - postgresql-data:/var/lib/postgresql/data
+    networks:
+      - postgresql_bd_net
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:8.4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL:-admin@pgadmin.org}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD:-password}
+    ports:
+      - "5555:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - postgresql_bd_net
+    depends_on:
+      - postgresql
 
 volumes:
   postgresql-data:
+  pgadmin-data:
+
+networks:
+    postgresql_bd_net:
