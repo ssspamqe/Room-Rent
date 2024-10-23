@@ -1,8 +1,8 @@
 package com.ssspamqe.roomrent.domain.entities.users;
 
 public enum Role {
-    VIEWER,
-    SELLER,
-    BUYER,
-    ADMIN
+    ROLE_VIEWER,
+    ROLE_SELLER,
+    ROLE_BUYER,
+    ROLE_ADMIN
 }
