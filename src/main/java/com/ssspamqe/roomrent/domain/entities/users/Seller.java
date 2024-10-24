@@ -1,5 +1,8 @@
-package com.ssspamqe.roomrent.domain.entities;
+package com.ssspamqe.roomrent.domain.entities.users;
 
+import com.ssspamqe.roomrent.domain.entities.stuff.Announcement;
+import com.ssspamqe.roomrent.domain.entities.stuff.Rent;
+import com.ssspamqe.roomrent.domain.entities.stuff.Room;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +20,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "seller")
+@Table(name = "sellers")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
