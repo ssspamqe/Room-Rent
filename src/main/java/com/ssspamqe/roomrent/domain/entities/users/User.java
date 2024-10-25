@@ -55,4 +55,7 @@ public class User {
     @OneToOne
     @PrimaryKeyJoinColumn
     private Buyer buyerAccount;
+
+    @Column(name = "deleted")
+    private boolean deleted;
 }

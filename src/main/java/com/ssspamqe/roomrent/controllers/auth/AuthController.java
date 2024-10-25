@@ -1,8 +1,8 @@
-package com.ssspamqe.roomrent.controllers;
+package com.ssspamqe.roomrent.controllers.auth;
 
-import com.ssspamqe.roomrent.controllers.models.request.SignInRequest;
-import com.ssspamqe.roomrent.controllers.models.request.SignUpRequest;
-import com.ssspamqe.roomrent.controllers.models.response.JwtAuthenticationResponse;
+import com.ssspamqe.roomrent.controllers.auth.request.SignInRequest;
+import com.ssspamqe.roomrent.controllers.auth.request.SignUpRequest;
+import com.ssspamqe.roomrent.controllers.auth.response.JwtAuthenticationResponse;
 import com.ssspamqe.roomrent.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

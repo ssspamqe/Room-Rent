@@ -44,4 +44,7 @@ public class Seller {
 
     @OneToMany(mappedBy = "seller")
     private Set<Announcement> announcements;
+
+    @Column(name = "deleted")
+    private boolean deleted;
 }

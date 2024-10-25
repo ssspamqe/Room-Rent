@@ -37,4 +37,7 @@ public class Announcement {
     @ManyToOne
     @JoinColumn(name = "seller_id", nullable = false)
     private Seller seller;
+
+    @Column(name = "deleted")
+    private boolean deleted;
 }

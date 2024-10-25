@@ -46,4 +46,7 @@ public class Room {
 
     @OneToMany(mappedBy = "room")
     private Set<Announcement> announcements;
+
+    @Column(name = "deleted")
+    private boolean deleted;
 }

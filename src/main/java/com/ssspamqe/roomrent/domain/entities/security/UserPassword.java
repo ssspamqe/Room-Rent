@@ -24,6 +24,9 @@ public class UserPassword {
     private Long userId;
 
     @Column(name = "password_hash")
-    String passwordHash;
+    private String passwordHash;
+
+    @Column(name = "deleted")
+    private boolean deleted;
 
 }

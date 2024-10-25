@@ -37,4 +37,7 @@ public class Buyer {
     @OneToMany(mappedBy = "buyer")
     private Set<Rent> rents;
 
+    @Column(name = "deleted")
+    private boolean deleted;
+
 }

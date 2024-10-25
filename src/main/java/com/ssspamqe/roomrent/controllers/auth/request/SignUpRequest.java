@@ -1,4 +1,4 @@
-package com.ssspamqe.roomrent.controllers.models.request;
+package com.ssspamqe.roomrent.controllers.auth.request;
 
 import lombok.Data;
 

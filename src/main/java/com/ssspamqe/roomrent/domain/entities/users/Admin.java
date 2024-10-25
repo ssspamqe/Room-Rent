@@ -22,4 +22,7 @@ public class Admin {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "deleted")
+    private boolean deleted;
+
 }
