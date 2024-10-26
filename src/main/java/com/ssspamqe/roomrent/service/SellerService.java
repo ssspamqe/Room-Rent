@@ -2,6 +2,7 @@ package com.ssspamqe.roomrent.service;
 
 import com.ssspamqe.roomrent.domain.dao.interfaces.SellerDAO;
 import com.ssspamqe.roomrent.domain.dao.interfaces.UserDAO;
+import com.ssspamqe.roomrent.domain.entities.users.Role;
 import com.ssspamqe.roomrent.domain.entities.users.Seller;
 import com.ssspamqe.roomrent.service.exceptions.user.NoSuchUserException;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class SellerService {
 
         var newSeller = new Seller();
         newSeller.setUser(user);
+        user.getRoles().add(Role.ROLE_SELLER);
         return sellerDAO.save(newSeller);
     }
 
@@ -39,12 +41,14 @@ public class SellerService {
 
         var savedSeller = sellerDAO.getByUserId(userId);
         savedSeller.setDeleted(true);
+        savedSeller.getUser().getRoles().remove(Role.ROLE_SELLER);
         return sellerDAO.save(savedSeller);
     }
 
     public Seller restore(Long userId) {
         var savedSeller = sellerDAO.getByUserId(userId);
         savedSeller.setDeleted(false);
+        savedSeller.getUser().getRoles().add(Role.ROLE_SELLER);
         return sellerDAO.save(savedSeller);
     }
 }
