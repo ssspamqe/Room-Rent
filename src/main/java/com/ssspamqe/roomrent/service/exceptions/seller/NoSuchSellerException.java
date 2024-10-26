@@ -7,7 +7,7 @@ public class NoSuchSellerException extends ServiceException {
         super(message);
     }
 
-    public static NoSuchSellerException forUserId(Long userId) {
+    public static NoSuchSellerException withUserId(Long userId) {
         return new NoSuchSellerException("No seller found for user id: " + userId);
     }
 }

@@ -1,8 +1,9 @@
 package com.ssspamqe.roomrent.service;
 
+import com.ssspamqe.roomrent.domain.dao.interfaces.SellerDAO;
+import com.ssspamqe.roomrent.domain.dao.interfaces.UserDAO;
 import com.ssspamqe.roomrent.domain.entities.users.Seller;
-import com.ssspamqe.roomrent.domain.repositories.SellerRepository;
-import com.ssspamqe.roomrent.service.exceptions.seller.NoSuchSellerException;
+import com.ssspamqe.roomrent.service.exceptions.user.NoSuchUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,42 +11,35 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SellerService {
 
-    private final SellerRepository sellerRepository;
     private final SecurityUserService securityUserService;
+    private final UserDAO userDAO;
+    private final SellerDAO sellerDAO;
 
-    public Seller register() {
-        var currentUser = securityUserService.getCurrentUser();
-        var currentUserId = currentUser.getId();
+    public Seller registerWithUserId(Long userId) {
+        var user = userDAO.getById(userId);
 
-        var oldSeller = sellerRepository.findByUserId(currentUserId);
-        if (oldSeller.isPresent()) {
-            return oldSeller.get();
+        if (sellerDAO.existsByUserId(userId)) {
+            return sellerDAO.getByUserId(userId);
         }
 
         var newSeller = new Seller();
-        newSeller.setUser(currentUser);
-        return sellerRepository.save(newSeller);
+        newSeller.setUser(user);
+        return sellerDAO.save(newSeller);
     }
 
-    public Seller delete() {
-        var currentUserId = securityUserService.getCurrentUser().getId();
+    public Seller deleteWithUserId(Long userId) {
+        if (!userDAO.existsById(userId)) {
+            throw NoSuchUserException.withId(userId);
+        }
 
-        var savedSeller = sellerRepository.findByUserId(currentUserId)
-                .orElseThrow(
-                        () -> NoSuchSellerException.forUserId(currentUserId)
-                );
+        var savedSeller = sellerDAO.getByUserId(userId);
         savedSeller.setDeleted(true);
-        return sellerRepository.save(savedSeller);
+        return sellerDAO.save(savedSeller);
     }
 
-    public Seller restore() {
-        var currentUserId = securityUserService.getCurrentUser().getId();
-
-        var savedSeller = sellerRepository.findByUserId(currentUserId)
-                .orElseThrow(
-                        () -> NoSuchSellerException.forUserId(currentUserId)
-                );
+    public Seller restore(Long userId) {
+        var savedSeller = sellerDAO.getByUserId(userId);
         savedSeller.setDeleted(false);
-        return sellerRepository.save(savedSeller);
+        return sellerDAO.save(savedSeller);
     }
 }
