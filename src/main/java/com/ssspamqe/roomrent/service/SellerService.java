@@ -19,7 +19,12 @@ public class SellerService {
         var user = userDAO.getById(userId);
 
         if (sellerDAO.existsByUserId(userId)) {
-            return sellerDAO.getByUserId(userId);
+            var savedSeller = sellerDAO.getByUserId(userId);
+            if (savedSeller.isDeleted()) {
+                return restore(userId);
+            } else {
+                return savedSeller;
+            }
         }
 
         var newSeller = new Seller();
