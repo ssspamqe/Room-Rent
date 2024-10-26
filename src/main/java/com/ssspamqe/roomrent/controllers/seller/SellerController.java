@@ -7,7 +7,6 @@ import com.ssspamqe.roomrent.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,15 +32,6 @@ public class SellerController {
     public ResponseEntity<RoomRentResponse<Seller>> delete() {
         var currentUser = securityUserService.getCurrentUser();
         var seller = sellerService.deleteWithUserId(currentUser.getId());
-        return ResponseEntity
-                .ok()
-                .body(RoomRentResponse.of(seller));
-    }
-
-    @PostMapping("/restore")
-    public ResponseEntity<RoomRentResponse<Seller>> restore() {
-        var currentUser = securityUserService.getCurrentUser();
-        var seller = sellerService.restore(currentUser.getId());
         return ResponseEntity
                 .ok()
                 .body(RoomRentResponse.of(seller));
