@@ -1,4 +1,4 @@
-package com.ssspamqe.roomrent.configuration;
+package com.ssspamqe.roomrent.configuration.mapstruct;
 
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.MapperConfig;

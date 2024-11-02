@@ -10,4 +10,8 @@ public class NoSuchSellerException extends ServiceException {
     public static NoSuchSellerException withUserId(Long userId) {
         return new NoSuchSellerException("No seller found for user id: " + userId);
     }
+
+    public static NoSuchSellerException withId(Long id) {
+        return new NoSuchSellerException("No seller found for id: " + id);
+    }
 }
