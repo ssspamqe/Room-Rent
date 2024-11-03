@@ -11,6 +11,10 @@ public record RoomRentResponse<T>(
         return new RoomRentResponse<>(body, List.of());
     }
 
+    public static RoomRentResponse<Void> ok() {
+        return new RoomRentResponse<>(null, List.of());
+    }
+
     public static RoomRentResponse<Void> error(Exception... exceptions) {
         return new RoomRentResponse<>(null, Arrays.stream(exceptions).toList());
     }
