@@ -18,13 +18,13 @@ public class RoomService {
     private final SellerDAO sellerDAO;
     private final RoomMapper roomMapper;
 
-    private Room createForSellerWithId(Long sellerId, RoomDTO roomDTO) {
+    public Room createForSellerWithId(Long sellerId, RoomDTO roomDTO) {
         var seller = sellerDAO.getById(sellerId);
         var room = roomMapper.toEntity(roomDTO, seller);
         return roomDAO.save(room);
     }
 
-    private void deleteForSellerWithId(Long sellerId, Long roomId) {
+    public void deleteForSellerWithId(Long sellerId, Long roomId) {
         if (!sellerDAO.existsById(sellerId)) {
             throw NoSuchSellerException.withId(sellerId);
         }
@@ -37,7 +37,7 @@ public class RoomService {
         }
     }
 
-    private Room getForSellerWithId(Long sellerId, Long roomId) {
+    public Room getForSellerWithId(Long sellerId, Long roomId) {
         var room = roomDAO.getById(roomId);
         if (room.getOwner().getId().equals(sellerId)) {
             return room;
@@ -46,7 +46,7 @@ public class RoomService {
         }
     }
 
-    private Room updateForSellerWithId(Long sellerId, Long roomId, RoomDTO roomDTO) {
+    public Room updateForSellerWithId(Long sellerId, Long roomId, RoomDTO roomDTO) {
         var room = getForSellerWithId(sellerId, roomId);
         roomMapper.update(room, roomDTO);
         return roomDAO.save(room);
