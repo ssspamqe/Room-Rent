@@ -50,4 +50,7 @@ public class Rent {
 
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
+
+    @Column(name = "deleted")
+    private boolean deleted;
 }
