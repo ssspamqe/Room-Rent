@@ -38,4 +38,10 @@ public class HibernateUserDAO implements UserDAO {
         return userRepository.findById(id)
                 .orElseThrow(() -> NoSuchUserException.withId(id));
     }
+
+    @Override
+    public User getByName(String name) {
+        return userRepository.findByName(name)
+                .orElseThrow(() -> NoSuchUserException.withName(name));
+    }
 }
