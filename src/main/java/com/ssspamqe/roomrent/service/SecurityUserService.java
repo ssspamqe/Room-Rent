@@ -1,5 +1,6 @@
 package com.ssspamqe.roomrent.service;
 
+import com.ssspamqe.roomrent.domain.dao.interfaces.UserDAO;
 import com.ssspamqe.roomrent.domain.entities.security.UserPassword;
 import com.ssspamqe.roomrent.domain.entities.users.User;
 import com.ssspamqe.roomrent.domain.repositories.UserPasswordRepository;
@@ -13,13 +14,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SecurityUserService {
 
-    private final UserService userService;
+    private final UserDAO userDAO;
     private final PasswordEncoder passwordEncoder;
     private final UserPasswordRepository userPasswordRepository;
 
     public User getCurrentUser() {
         var name = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userService.getByName(name);
+        return userDAO.getByName(name);
     }
 
     public UserPassword savePassword(long usedId, String password) {

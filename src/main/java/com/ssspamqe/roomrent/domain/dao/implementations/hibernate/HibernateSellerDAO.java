@@ -28,4 +28,15 @@ public class HibernateSellerDAO implements SellerDAO {
     public Seller save(Seller seller) {
         return sellerRepository.save(seller);
     }
+
+    @Override
+    public Seller getById(Long id) {
+        return sellerRepository.findById(id)
+                .orElseThrow(() -> NoSuchSellerException.withId(id));
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return sellerRepository.existsById(id);
+    }
 }

@@ -7,17 +7,23 @@ import com.ssspamqe.roomrent.domain.entities.users.Seller;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(config = MapStructConfig.class)
-public interface RoomMapper {
+public abstract class RoomMapper {
 
-    Room toEntity(RoomDTO roomDTO, Seller owner);
+    @Autowired
+    protected GeometryMapper geometryMapper;
+
+    @Mapping(target = "position", expression = "java(geometryMapper.toPoint(roomDTO.position()))")
+    @Mapping(target = "owner", source = "owner")
+    public abstract Room toEntity(RoomDTO roomDTO, Seller owner);
 
     @Mapping(target = "rents", ignore = true)
     @Mapping(target = "owner", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "deleted", ignore = true)
     @Mapping(target = "announcements", ignore = true)
-    void update(@MappingTarget Room room, RoomDTO roomDTO);
-
+    @Mapping(target = "position", expression = "java(geometryMapper.toPoint(roomDTO.position()))")
+    public abstract void update(@MappingTarget Room room, RoomDTO roomDTO);
 }
