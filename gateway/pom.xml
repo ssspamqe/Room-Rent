@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ssspamqe</groupId>
-    <artifactId>room-rent</artifactId>
+    <artifactId>room-rent-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>room-rent</name>
     <description>room-rent</description>
