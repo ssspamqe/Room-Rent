@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package room;
+
+
+option java_multiple_files = true;
+option java_package = "com.ssspamqe.room";
+
+message Empty {}
+
+message EarthPosition {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message RoomRequest {
+    string name = 1;
+    string description = 2;
+    EarthPosition position = 3;
+}
+
+message RoomResponse {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string seller_id = 4;
+    EarthPosition position = 5;
+    bool deleted = 6;
+}
+message UpdateRoomByIdRequest {
+    int64 id = 1;
+    RoomRequest room = 2;
+}
+
+
+service RoomService {
+    rpc CreateRoom (RoomRequest) returns (RoomResponse);
+    rpc GetRoomById (int64) returns (RoomResponse);
+    rpc DeleteRoomById (int64) returns (Empty);
+    rpc UpdateRoomById (UpdateRoomByIdRequest) returns (RoomResponse);
+}
