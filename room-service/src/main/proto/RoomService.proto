@@ -27,15 +27,19 @@ message RoomResponse {
     EarthPosition position = 5;
     bool deleted = 6;
 }
+
 message UpdateRoomByIdRequest {
     int64 id = 1;
     RoomRequest room = 2;
 }
 
+message RoomIdRequest {
+    int64 id = 1;
+}
 
 service RoomService {
     rpc CreateRoom (RoomRequest) returns (RoomResponse);
-    rpc GetRoomById (int64) returns (RoomResponse);
-    rpc DeleteRoomById (int64) returns (Empty);
+    rpc GetRoomById (RoomIdRequest) returns (RoomResponse);
+    rpc DeleteRoomById (RoomIdRequest) returns (Empty);
     rpc UpdateRoomById (UpdateRoomByIdRequest) returns (RoomResponse);
 }
