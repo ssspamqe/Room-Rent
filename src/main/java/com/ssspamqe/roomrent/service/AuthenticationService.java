@@ -31,7 +31,7 @@ public class AuthenticationService {
         var user = User.builder()
                 .name(signUpRequest.getUsername())
                 .email(signUpRequest.getEmail())
-                .roles(Set.of(Role.ROLE_VIEWER))
+                .roles(Set.of(Role.VIEWER))
                 .build();
         var savedUserId = userService.create(user).getId();
 
